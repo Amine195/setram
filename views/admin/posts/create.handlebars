@@ -1,0 +1,27 @@
+<h1>Create Posts</h1>
+
+<form action="/admin/posts/create" method="post">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" name="title" id="title" placeholder="Enter title">
+    </div>
+    <div class="form-group">
+        <label for="status">Status</label>
+        <select class="form-control" name="status" id="status">
+            <option value="public">Public</option>
+            <option value="private">Private</option>
+            <option value="draft">Draft</option>
+        </select>
+    </div>
+    <div class="form-check">
+        <label for="allowComments" class="form-check-label">
+            <input type="checkbox" class="form-check-input" name="allowComments" id="allowComments">
+            Allow Comments
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="body">Body</label>
+        <textarea type="text" class="form-control" cols="15" rows="5" name="body" id="body" placeholder="Enter description"></textarea>
+    </div>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>
