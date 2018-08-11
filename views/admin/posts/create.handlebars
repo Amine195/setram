@@ -1,27 +1,25 @@
-<h1>Create Posts</h1>
+<h2 class="font-weight-bold"><strong>CREATE POSTS</strong></h2>
 
 <form action="/admin/posts/create" method="post">
-    <div class="form-group">
-        <label for="title">Title</label>
-        <input type="text" class="form-control" name="title" id="title" placeholder="Enter title">
+
+    <div class="md-form">
+        <input type="text" id="title" name="title" class="form-control">
+        <label for="title" >Title</label>
     </div>
-    <div class="form-group">
-        <label for="status">Status</label>
-        <select class="form-control" name="status" id="status">
-            <option value="public">Public</option>
-            <option value="private">Private</option>
-            <option value="draft">Draft</option>
-        </select>
-    </div>
-    <div class="form-check">
-        <label for="allowComments" class="form-check-label">
-            <input type="checkbox" class="form-check-input" name="allowComments" id="allowComments">
-            Allow Comments
-        </label>
-    </div>
-    <div class="form-group">
+    <select class="mdb-select" name="status" id="status">
+        <option value="" disabled selected>Select Status</option>
+        <option value="public">Public</option>
+        <option value="private">Private</option>
+        <option value="draft">Draft</option>
+    </select>
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" name="allowComments" id="allowComments">
+        <label class="custom-control-label" for="allowComments">Allow Comments</label>
+    </div>    
+    <div class="md-form">
+        <textarea type="text" id="body" name="body" class="md-textarea form-control" cols="15" rows="5"></textarea>
         <label for="body">Body</label>
-        <textarea type="text" class="form-control" cols="15" rows="5" name="body" id="body" placeholder="Enter description"></textarea>
     </div>
-    <button class="btn btn-primary" type="submit">Submit</button>
+    <button type="submit" class="btn btn-outline-success waves-effect"><i class="fa fa-check" aria-hidden="true"></i> Submit</button>
+    <a href="/admin/posts" class="btn btn-outline-danger waves-effect"><i class="fa fa-arrow-left" aria-hidden="true"></i> Return</a>
 </form>

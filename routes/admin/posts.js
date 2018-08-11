@@ -13,6 +13,12 @@ router.get('/', (req, res)=>{
     });
 });
 
+router.get('/view/:id', (req, res)=>{
+    Post.findOne({_id: req.params.id}).then(post=>{
+        res.render('admin/posts/view', {post:post}); 
+    });
+});
+
 router.get('/create', (req, res)=>{
     res.render('admin/posts/create');
 });

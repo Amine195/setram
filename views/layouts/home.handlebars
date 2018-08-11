@@ -1,41 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Blog Home - Start Bootstrap Template</title>
-
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Material Design Bootstrap</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="/css/mdb.min.css" rel="stylesheet">
+    <!-- Your custom styles -->
+    <link href="/css/style.css" rel="stylesheet">
+    <!-- Your Font styles -->
+    <link href="/css/font.css" rel="stylesheet">
+</head>
 
-    <!-- Custom styles for this template -->
-    <link href="/css/blog-home.css" rel="stylesheet">
+<body>
 
-  </head>
+    <!-- Main Navigation -->
+    <header>
+        <!-- Navbar -->
+        {{> home/navbar}}
+    </header>
+    <!--Main Navigation-->
 
-  <body>
-
-    <!-- Navigation -->
-    {{> home/navbar}}
-
-    <!-- Page Content -->
-    <div class="container">
-      {{{body}}}
-    </div>
-    <!-- /.container -->
+    <!--Main Layout-->
+    <main>
+        <div class="container">
+            {{{body}}}
+        </div>
+    </main>
+    <!--Main Layout-->
 
     <!-- Footer -->
-    {{> home/footer}}
+    <footer>
+        {{> home/footer}}
+    </footer>
+    <!--/.Footer-->
 
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <!-- Bootstrap tooltips -->
+    <script type="text/javascript" src="/js/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->
-    <script src="/js/jquery/jquery.min.js"></script>
-    <script src="/js/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="/js/mdb.min.js"></script>
 
-  </body>
+</body>
 
 </html>
