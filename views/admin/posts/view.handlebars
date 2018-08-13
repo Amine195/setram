@@ -1,3 +1,12 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="/admin/posts">Posts</a></li>
+    <li class="breadcrumb-item active" aria-current="page">View</li>
+  </ol>
+</nav>
+<br>
+
 <h2 class="font-weight-bold"><strong>VIEW POST</strong></h2>
 <hr>
 <br>
@@ -24,6 +33,11 @@
 
 <h4><u>Description :</u></h4>
 <h6>{{post.body}}</h6>
+
+<br>
+
+<h4><u>File :</u></h4>
+<img class="img-fluid" src="/uploads/{{post.file}}" alt="{{post.file}}" style="height:120px;">
 
 <br>
 <hr>
