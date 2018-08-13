@@ -49,12 +49,15 @@ router.post('/create', (req, res)=>{
         });
     } else {
 
-        let filename = 'noimage';
+        let filename = 'No Image';
+        let allowimage = false;
 
         if(!isEmpty(req.files)){
             
             let file = req.files.file;
             filename = Date.now() + '-' + file.name;
+            allowimage = true;
+
 
             file.mv('./public/uploads/' + filename, (err)=>{
                 if(err) throw err;
@@ -74,7 +77,8 @@ router.post('/create', (req, res)=>{
             status : req.body.status,
             allowComments: allowComments,
             body: req.body.body,
-            file: filename
+            file: filename,
+            allowFile: allowimage
         });
 
         newPost.save().then(savedPost => {

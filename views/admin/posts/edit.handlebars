@@ -16,7 +16,11 @@
         <label for="title" >Title</label>
     </div>
 
-    <img class="img-fluid" src="/uploads/{{post.file}}" alt="{{post.file}}" style="height:120px;">
+    {{#if post.allowFile}}
+        <img class="img-fluid" src="/uploads/{{post.file}}" alt="{{post.file}}" style="height:100px;">
+    {{else}}
+    
+    {{/if}}
     <div class="file-field mb-3 mt-3">
         <div class="btn btn-outline-info waves-effect btn-sm float-left">
             <span>Choose file<i class="fa fa-upload ml-3" aria-hidden="true"></i></span>

@@ -21,6 +21,9 @@ const PostSchema = new Schema({
     file: {
         type: String
     },
+    allowFile: {
+        type: Boolean
+    },
     date: {
         type: Date,
         default: Date.now()
