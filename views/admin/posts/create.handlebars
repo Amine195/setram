@@ -10,8 +10,11 @@
 <h2 class="font-weight-bold"><strong>CREATE POSTS</strong></h2>
 
 {{#each errors}}
-    <div class="alert alert-danger" role="alert">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <i class="fa fa-warning" aria-hidden="true"></i> {{message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 {{/each}}
 
@@ -31,14 +34,14 @@
                 <option value="draft">Draft</option>
             </select>
 
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" name="allowComments" id="allowComments">
-                <label class="custom-control-label" for="allowComments">Allow Comments</label>
-            </div>  
-
             <div class="md-form">
                 <textarea type="text" id="body" name="body" class="md-textarea form-control" cols="15" rows="5" required></textarea>
                 <label for="body">Body</label>
+            </div>
+
+            <div class="custom-control custom-checkbox ml-4 mb-4">
+                <input type="checkbox" class="custom-control-input" name="allowComments" id="allowComments">
+                <label class="custom-control-label" for="allowComments">Allow Comments</label>
             </div>
         </div>
         <div class="col-md-1">
@@ -47,7 +50,7 @@
         <div class="col-md-4">
             <div class="file-field float-left">
                 <div class="mb-4">
-                    <img src="/img/image-placeholder.jpg" class="img-fluid" alt="example placeholder">
+                    <img src="/img/image-placeholder.jpg" class="img-fluid" id="filePreview" alt="example placeholder">
                 </div>
                 <div class="d-flex justify-content-center">
                     <div class="btn btn-outline-info waves-effect float-left">
@@ -62,3 +65,18 @@
     <button type="submit" class="btn btn-outline-success waves-effect"><i class="fa fa-check" aria-hidden="true"></i> Submit</button>
     <a href="/admin/posts" class="btn btn-outline-danger waves-effect"><i class="fa fa-arrow-left" aria-hidden="true"></i> Return</a>
 </form>
+
+<script>  
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $("#filePreview").attr('src', e.target.result).width(350).height(350);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#file").change(function() {
+        readURL(this);
+    });
+</script>
