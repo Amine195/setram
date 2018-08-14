@@ -119,6 +119,7 @@ router.put('/edit/:id', (req, res)=>{
             let file = req.files.file;
             filename = Date.now() + '-' + file.name;
             post.file = filename;
+            post.allowFile = true;
 
             file.mv('./public/uploads/' + filename, (err)=>{
                 if(err) throw err;

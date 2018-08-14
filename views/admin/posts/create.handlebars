@@ -17,36 +17,46 @@
 
 <form class="md-form" action="/admin/posts/create" method="post" enctype="multipart/form-data">
 
-    <div class="md-form">
-        <input type="text" id="title" name="title" class="form-control" required>
-        <label for="title" >Title</label>
-    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <div class="md-form">
+                <input type="text" id="title" name="title" class="form-control" required>
+                <label for="title" >Title</label>
+            </div>
 
-    <div class="file-field mb-3 mt-3">
-        <div class="btn btn-outline-info waves-effect btn-sm float-left">
-            <span>Choose file<i class="fa fa-upload ml-3" aria-hidden="true"></i></span>
-            <input type="file" name="file" id="file">
+            <select class="mdb-select" name="status" id="status">
+                <option value="" disabled selected>Select Status</option>
+                <option value="public">Public</option>
+                <option value="private">Private</option>
+                <option value="draft">Draft</option>
+            </select>
+
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" name="allowComments" id="allowComments">
+                <label class="custom-control-label" for="allowComments">Allow Comments</label>
+            </div>  
+
+            <div class="md-form">
+                <textarea type="text" id="body" name="body" class="md-textarea form-control" cols="15" rows="5" required></textarea>
+                <label for="body">Body</label>
+            </div>
         </div>
-        <div class="file-path-wrapper">
-           <input class="file-path validate" type="text" placeholder="Upload your file">
+        <div class="col-md-1">
+
         </div>
-    </div>
-
-    <select class="mdb-select" name="status" id="status">
-        <option value="" disabled selected>Select Status</option>
-        <option value="public">Public</option>
-        <option value="private">Private</option>
-        <option value="draft">Draft</option>
-    </select>
-
-    <div class="custom-control custom-checkbox">
-        <input type="checkbox" class="custom-control-input" name="allowComments" id="allowComments">
-        <label class="custom-control-label" for="allowComments">Allow Comments</label>
-    </div>  
-
-    <div class="md-form">
-        <textarea type="text" id="body" name="body" class="md-textarea form-control" cols="15" rows="5" required></textarea>
-        <label for="body">Body</label>
+        <div class="col-md-4">
+            <div class="file-field float-left">
+                <div class="mb-4">
+                    <img src="/img/image-placeholder.jpg" class="img-fluid" alt="example placeholder">
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="btn btn-outline-info waves-effect float-left">
+                        <span>Choose file <i class="fa fa-upload ml-3" aria-hidden="true"></i></span>
+                        <input type="file" name="file" id="file">
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <button type="submit" class="btn btn-outline-success waves-effect"><i class="fa fa-check" aria-hidden="true"></i> Submit</button>
