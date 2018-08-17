@@ -6,5 +6,5 @@ Ps.initialize(sideNavScrollbar);
 
 // Material Select Initialization
 $(document).ready(function() {
-   $('.mdb-select').material_select();
- });
+    $('.mdb-select').material_select();
+});

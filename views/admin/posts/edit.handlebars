@@ -18,9 +18,18 @@
                 <label for="title" >Title</label>
             </div>
 
+            <select class="mdb-select" name="category" id="category">
+                <option value="" disabled selected>Select Categorie</option>
+                {{#select post.category}}
+                    {{#each categories}}
+                        <option value="{{id}}">{{name}}</option>
+                    {{/each}}
+                {{/select}}
+            </select>   
+
             <select class="mdb-select" name="status" id="status">
+                <option value="" disabled selected>Select Status</option>
                 {{#select post.status}}
-                    <option value="" disabled selected>Select Status</option>
                     <option value="public">Public</option>
                     <option value="private">Private</option>
                     <option value="draft">Draft</option>

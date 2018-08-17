@@ -20,6 +20,7 @@
                 <th scope="col">Id</th>
                 <th scope="col">file</th>
                 <th scope="col">Title</th>
+                <th scope="col">Category</th>
                 <th scope="col">Status</th>
                 <th scope="col">Comments</th>
                 <th scope="col">Date</th>
@@ -41,6 +42,7 @@
                     {{/if}}
                 </td>
                 <td>{{title}}</td>
+                <td>{{category.name}}</td>
                 <td>{{status}}</td>
                 <td>{{allowComments}}</td>
                 <td>{{generateTime date 'Do-MM-YYYY'}}</td>

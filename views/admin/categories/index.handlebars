@@ -36,6 +36,7 @@
                     <tr>
                         <th scope="col">Id</th>
                         <th scope="col">Name</th>
+                        <th scope="col">Date</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
                     </tr>
@@ -46,6 +47,7 @@
                     <tr>
                         <th scope="row">{{id}}</th>
                         <td>{{name}}</td>
+                        <td>{{generateTime date 'Do-MM-YYYY'}}</td>
                         <td><a href="/admin/categories/edit/{{id}}" class="btn btn-outline-info waves-effect btn-sm m-0 float-right"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></td>
                         <td>
                             <form action="/admin/categories/{{id}}?_method=DELETE" method="post">

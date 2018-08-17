@@ -10,7 +10,7 @@ router.all('/*', (req, res, next)=>{
 
 // Get Index Categories
 router.get('/', (req, res)=>{
-    Category.find({}).then(categories=>{
+    Category.find({}).sort({date:'desc'}).then(categories=>{
         res.render('admin/categories/index', {categories:categories});
     });
 });

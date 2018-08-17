@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Post = require('../../models/Post');
+const Category = require('../../models/Category');
 const { isEmpty, uploadDir } = require('../../helpers/upload-helpers');
 const fs = require('fs');
 const path = require('path');
@@ -13,7 +14,7 @@ router.all('/*', (req, res, next)=>{
 
 // Get Index Posts
 router.get('/', (req, res)=>{
-    Post.find({}).then(posts=>{
+    Post.find({}).sort({date:'desc'}).populate('category').then(posts=>{
         res.render('admin/posts', {posts:posts});
     });
 });
@@ -27,7 +28,9 @@ router.get('/view/:id', (req, res)=>{
 
 // Get Form Create Post
 router.get('/create', (req, res)=>{
-    res.render('admin/posts/create');
+    Category.find({}).then(categories=>{
+        res.render('admin/posts/create', {categories:categories});
+    });
 });
 
 // Post Create Post
@@ -78,7 +81,8 @@ router.post('/create', (req, res)=>{
             allowComments: allowComments,
             body: req.body.body,
             file: filename,
-            allowFile: allowimage
+            allowFile: allowimage,
+            category: req.body.category
         });
 
         newPost.save().then(savedPost => {
@@ -94,7 +98,9 @@ router.post('/create', (req, res)=>{
 // Get Edit Post
 router.get('/edit/:id', (req, res)=>{
     Post.findOne({_id: req.params.id}).then(post=>{
-        res.render('admin/posts/edit', {post:post}); 
+        Category.find({}).then(categories=>{
+            res.render('admin/posts/edit', {post:post, categories:categories}); 
+        });
     });
 });
 
@@ -113,6 +119,7 @@ router.put('/edit/:id', (req, res)=>{
         post.status = req.body.status;
         post.allowComments = allowComments;
         post.body = req.body.body;
+        post.category = req.body.category;
 
         if(!isEmpty(req.files)){
             
