@@ -1,35 +1,22 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-    <a class="navbar-brand" href="#">Start Bootstrap</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-            <a class="nav-link" href="/">Home
-            <span class="sr-only">(current)</span>
+<nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg scrolling-navbar double-nav">
+    <!-- SideNav slide-out button -->
+    <div class="float-left">
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="fa fa-bars"></i></a>
+    </div>
+    <!-- Breadcrumb-->
+    <div class="breadcrumb-dn mr-auto">
+        {{!-- <p><img src="/img/admin.png" style="width:38px;"> Admin Panel</p> --}}
+        {{!-- <p>Bienvenue Mohammed Amine au Panel d'administration</p> --}}
+    </div>
+    <ul class="nav navbar-nav nav-flex-icons ml-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Mon Compte
             </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#"><i class="fa fa-user"></i>&nbsp;&nbsp; Mon Profile</a>
+                <a class="dropdown-item" href="#"><i class="fa fa-power-off" aria-hidden="true"></i>&nbsp;&nbsp; Logout</a>
+            </div>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/admin">Admin</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/about">About</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/register">Register</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
-        </li>
-        </ul>
-    </div>
-    </div>
+    </ul>
 </nav>

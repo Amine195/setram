@@ -1,0 +1,24 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="/admin/categories">Categories</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Edit</li>
+  </ol>
+</nav>
+<br>
+
+<h2 class="font-weight-bold"><strong>UPDATES CATEGORIES</strong></h2>
+
+<div class="col-md-4">
+
+    <form action="/admin/categories/edit/{{category.id}}?_method=PUT" method="post">
+
+        <div class="md-form">
+            <input type="text" name="name" id="name" class="form-control" value="{{category.name}}">
+            <label for="name">Enter Name of Categorie</label>
+        </div>
+        <button type="submit" class="btn btn-outline-success waves-effect ml-0">Update Category</button>
+        <a href="/admin/categories" class="btn btn-outline-danger waves-effect"><i class="fa fa-arrow-left" aria-hidden="true"></i> Return</a>
+    </form>
+
+</div>
