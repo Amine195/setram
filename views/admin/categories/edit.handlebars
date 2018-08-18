@@ -1,3 +1,12 @@
+<style>
+    body{
+        background-color: #9e9e9e2e;
+    }
+    .breadcrumb{
+        background-color: #607d8b2e
+    }
+</style>
+
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
@@ -7,18 +16,27 @@
 </nav>
 <br>
 
-<h2 class="font-weight-bold"><strong>UPDATES CATEGORIES</strong></h2>
+<div class="col-md-5">
 
-<div class="col-md-4">
+    <div class="card">
 
-    <form action="/admin/categories/edit/{{category.id}}?_method=PUT" method="post">
+        <!--Card content-->
+        <div class="card-body px-lg-5">
 
-        <div class="md-form">
-            <input type="text" name="name" id="name" class="form-control" value="{{category.name}}">
-            <label for="name">Enter Name of Categorie</label>
+            <h5 class="font-weight-bold"><strong><u>EDIT CATEGORIES</u></strong></h5>
+
+            <form action="/admin/categories/edit/{{category.id}}?_method=PUT" method="post">
+
+                <div class="md-form">
+                    <input type="text" name="name" id="name" class="form-control" value="{{category.name}}">
+                    <label for="name">Enter Name of Categorie</label>
+                </div>
+                <button type="submit" class="btn btn-outline-success waves-effect ml-0">Update Category</button>
+                <a href="/admin/categories" class="btn btn-outline-danger waves-effect"><i class="fa fa-arrow-left" aria-hidden="true"></i> Return</a>
+            </form>
+
         </div>
-        <button type="submit" class="btn btn-outline-success waves-effect ml-0">Update Category</button>
-        <a href="/admin/categories" class="btn btn-outline-danger waves-effect"><i class="fa fa-arrow-left" aria-hidden="true"></i> Return</a>
-    </form>
+
+    </div>
 
 </div>

@@ -1,51 +1,86 @@
+<style>
+    body{
+        background-color: #9e9e9e2e;
+    }
+    .breadcrumb{
+        background-color: #607d8b2e
+    }
+</style>
+
 <nav aria-label="breadcrumb">
-  <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="/admin/posts">Posts</a></li>
-    <li class="breadcrumb-item active" aria-current="page">View</li>
-  </ol>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item"><a href="/admin/posts">Posts</a></li>
+        <li class="breadcrumb-item active" aria-current="page">View</li>
+    </ol>
 </nav>
-<br>
 
-<h2 class="font-weight-bold"><strong>VIEW POST</strong></h2>
+<!-- Material form login -->
+<div class="card">
+
+    <!--Card content-->
+    <div class="card-body px-lg-5">
+
+        <br>
+        <h4 class="font-weight-bold"><strong><u>VIEW POSTS</u></strong></h4>
+
+        <div class="row">
+
+            <div class="col-md-7">
+
+                <br>
+                <h6><u>Id :</u></h6>
+                <h6>{{post.id}}</h6>
+
+                <br>
+
+                <h6><u>Title :</u></h6>
+                <h6>{{post.title}}</h6>
+
+                <br>
+
+                <h6><u>Status :</u></h6>
+                <h6>{{post.status}}</h6>
+
+                <br>
+
+                <h6><u>AllowComments :</u></h6>
+                <h6>{{post.allowComments}}</h6>
+
+                <br>
+
+                <h6><u>Description :</u></h6>
+                <h6>{{post.body}}</h6>
+
+                <br>
+            </div>
+
+            <div class="col-md-1">
+
+            </div>
+
+            <div class="col-md-4">
+                <h6><u>File :</u></h6>
+                {{#if post.allowFile}}
+                <img class="img-fluid" src="/uploads/{{post.file}}" alt="{{post.file}}" style="width:443;height:303px;">
+                {{else}}
+                <img src="/img/no-image.jpg" class="img-fluid" id="filePreview" alt="example placeholder">
+                {{/if}}
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- Material form login -->
+
+<br>
 <hr>
-<br>
 
-<h4><u>Id :</u></h4>
-<h6>{{post.id}}</h6>
-
-<br>
-
-<h4><u>Title :</u></h4>
-<h6>{{post.title}}</h6>
-
-<br>
-
-<h4><u>Status :</u></h4>
-<h6>{{post.status}}</h6>
-
-<br>
-
-<h4><u>AllowComments :</u></h4>
-<h6>{{post.allowComments}}</h6>
-
-<br>
-
-<h4><u>Description :</u></h4>
-<h6>{{post.body}}</h6>
-
-<br>
-
-<h4><u>File :</u></h4>
-{{#if post.allowFile}}
-    <img class="img-fluid" src="/uploads/{{post.file}}" alt="{{post.file}}" style="height:150px;">
-{{else}}
-    No Image
-{{/if}}
-
-<br>
-<hr>
-
-<a href="/admin/posts" class="btn btn-outline-danger waves-effect float-right"><i class="fa fa-arrow-left" aria-hidden="true"></i> Return</a>
+<a href="/admin/posts/edit/{{post.id}}" class="btn btn-outline-info waves-effect float-right"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a>
+<form action="/admin/posts/{{post.id}}?_method=DELETE" method="post">
+    <button type="submit" class="btn btn-outline-danger waves-effect float-right"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+</form>
+<a href="/admin/posts" class="btn btn-outline-danger waves-effect float-left"><i class="fa fa-arrow-left" aria-hidden="true"></i> Return</a>
 
 <br><br><br><br><br>

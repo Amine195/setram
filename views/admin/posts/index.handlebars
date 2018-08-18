@@ -1,64 +1,103 @@
+<style>
+    body{
+        background-color: #9e9e9e2e;
+    }
+    .breadcrumb{
+        background-color: #607d8b2e
+    }
+</style>
+
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
     <li class="breadcrumb-item active" aria-current="page">Posts</li>
   </ol>
 </nav>
-<br>
-
-<h2 class="font-weight-bold"><strong>ALL POSTS</strong></h2>
-
-
 
 {{> admin/msgs}}
 
-<div class="table-responsive">
-    <table class="table">
+<!-- Material form login -->
+<div class="card">
 
-        <thead class="grey lighten-2">
-            <tr>
-                <th scope="col">Id</th>
-                <th scope="col">file</th>
-                <th scope="col">Title</th>
-                <th scope="col">Category</th>
-                <th scope="col">Status</th>
-                <th scope="col">Comments</th>
-                <th scope="col">Date</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"><span class="float-right"><a href="/admin/posts/create" class="text-success"><i class="fa fa-plus" aria-hidden="true"></i> New</a></span></th>
-            </tr>
-        </thead>
+    <!--Card content-->
+    <div class="card-body px-lg-5">
 
-        <tbody>
-        {{#each posts}}
-            <tr>
-                <th scope="row">{{id}}</th>
-                <td>
-                    {{#if allowFile}}
-                        <img class="img-fluid" src="/uploads/{{file}}" alt="{{file}}" style="height:50px; width:80px;">
-                    {{else}}
-                        {{file}}
-                    {{/if}}
-                </td>
-                <td>{{title}}</td>
-                <td>{{category.name}}</td>
-                <td>{{status}}</td>
-                <td>{{allowComments}}</td>
-                <td>{{generateTime date 'Do-MM-YYYY'}}</td>
-                <td><a href="/admin/posts/view/{{id}}" class="btn btn-outline-success waves-effect btn-sm m-0 float-right"><i class="fa fa-eye" aria-hidden="true"></i> View</a></td>
-                <td><a href="/admin/posts/edit/{{id}}" class="btn btn-outline-info waves-effect btn-sm m-0 float-right"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></td>
-                <td>
-                    <form action="/admin/posts/{{id}}?_method=DELETE" method="post">
-                        <button type="submit" class="btn btn-outline-danger waves-effect btn-sm m-0"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
-                    </form>
-                </td>
-            </tr>
-            {{/each}}
-        </tbody>
+        <br>
+        <h4 class="font-weight-bold"><strong><u>ALL POSTS</u></strong></h4>
+        <br>
 
-    </table>
-    
+        <div class="table-responsive">
+
+            <table class="table">
+
+                <thead class="grey lighten-2">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">file</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Comments</th>
+                        <th scope="col">Date</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"><span class="float-right"><a href="/admin/posts/create" class="text-success"><i class="fa fa-plus" aria-hidden="true"></i> New</a></span></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                {{#each posts}}
+                    <tr>
+                        <th scope="row">{{id}}</th>
+                        <td>
+                            {{#if allowFile}}
+                                <img class="img-fluid" src="/uploads/{{file}}" alt="{{file}}" style="height:50px; width:80px;">
+                            {{else}}
+                                {{file}}
+                            {{/if}}
+                        </td>
+                        <td>{{title}}</td>
+                        <td>{{category.name}}</td>
+                        <td>{{status}}</td>
+                        <td>{{allowComments}}</td>
+                        <td>{{generateTime date 'Do-MM-YYYY'}}</td>
+                        <td><a href="/admin/posts/view/{{id}}" class="btn btn-outline-success waves-effect btn-sm m-0 float-right"><i class="fa fa-eye" aria-hidden="true"></i> View</a></td>
+                        <td><a href="/admin/posts/edit/{{id}}" class="btn btn-outline-info waves-effect btn-sm m-0 float-right"><i class="fa fa-edit" aria-hidden="true"></i> Edit</a></td>
+                        <td>
+                            <form action="/admin/posts/{{id}}?_method=DELETE" method="post">
+                                <button type="submit" class="btn btn-outline-danger waves-effect btn-sm m-0"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+
+            </table>
+            
+        </div>
+
+    </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end mr-5">
+            <!--Previous-->
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>
+
+            <!--Numbers-->
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+
+            <!--Next-->
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
+
 </div>
+<!-- Material form login -->
 
-<br><br>
+<br><br><br>
