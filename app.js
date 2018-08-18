@@ -66,12 +66,14 @@ const home = require('./routes/home/index');
 const admin = require('./routes/admin/index');
 const posts = require('./routes/admin/posts');
 const categories = require('./routes/admin/categories');
+const users = require('./routes/admin/users');
 
 // Use Route
 app.use('/',home);
 app.use('/admin',admin);
 app.use('/admin/posts',posts);
 app.use('/admin/categories',categories);
+app.use('/admin/users',users);
 
 // Server listen
 app.listen(3000, ()=>{

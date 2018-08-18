@@ -7,7 +7,7 @@ const PostSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref:'categories'
     },
-    title:{
+    title: {
         type: String,
         required: true
     },
