@@ -119,7 +119,7 @@ router.post('/create', (req, res)=>{
                     bcrypt.hash(newUser.password, salt, (err, hash)=>{
                         newUser.password = hash
                         newUser.save().then(saveUser=>{
-                            req.flash('success_message', 'You are new registred, please login');
+                            req.flash('success_message', `Le Compte ${saveUser.email} est Créé avec succès`);
                             res.redirect('/admin/users');
                         });
                     });
@@ -130,6 +130,20 @@ router.post('/create', (req, res)=>{
             }
         });
     }
+});
+
+// Get Conducteur
+router.get('/conducteur', (req, res)=>{
+    User.find({status: "Conducteur"}).then(users=>{
+        res.render('admin/users/index', {users:users});
+    });
+});
+
+// Get AMT
+router.get('/agent_de_maitrise', (req, res)=>{
+    User.find({status: "Agent de Maitrise"}).then(users=>{
+        res.render('admin/users/agent_de_maitrise', {users:users});
+    });
 });
 
 module.exports = router;

@@ -17,10 +17,12 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
-    <li class="breadcrumb-item"><a href="/admin/posts">Users</a></li>
+    <li class="breadcrumb-item"><a href="/admin/users">Users</a></li>
     <li class="breadcrumb-item active" aria-current="page">Create</li>
   </ol>
 </nav>
+
+{{> admin/msgs}}
 
 <!-- Grid row -->
 <div class="row d-flex justify-content-center">
@@ -58,7 +60,7 @@
                                     Correct !
                                 </div>
                                 <div class="invalid-feedback animated fadeInRight">
-                                    Veuillez Entrer Un Email.
+                                    Veuillez Entrer Un Email Valide.
                                 </div>
                             </div>
                             <div class="row">
@@ -104,25 +106,25 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="md-form">
-                                        <label for="lastName">Nom</label>
-                                        <input id="lastName" name="lastName" type="text" value="{{lastName}}" required="required" class="form-control">
-                                        <div class="valid-feedback animated fadeInRight">
-                                            Correct !
-                                        </div>
-                                        <div class="invalid-feedback animated fadeInRight">
-                                            Veuillez Entrer Un Nom.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="md-form">
-                                        <label for="firstName">Prénom</label>
+                                        <label for="firstName">Nom</label>
                                         <input id="firstName" name="firstName" type="text" value="{{firstName}}" required="required" class="form-control">
                                         <div class="valid-feedback animated fadeInRight">
                                             Correct !
                                         </div>
                                         <div class="invalid-feedback animated fadeInRight">
                                             Veuillez Entrer Un Prénom.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="md-form">
+                                        <label for="lastName">Prénom</label>
+                                        <input id="lastName" name="lastName" type="text" value="{{lastName}}" required="required" class="form-control">
+                                        <div class="valid-feedback animated fadeInRight">
+                                            Correct !
+                                        </div>
+                                        <div class="invalid-feedback animated fadeInRight">
+                                            Veuillez Entrer Un Nom.
                                         </div>
                                     </div>
                                 </div>
@@ -151,7 +153,7 @@
                                 </div>
                             </div>
                             <div class="md-form mt-4">
-                                <label for="certificate">Diplome</label>
+                                <label for="certificate">Diplome, Spécialité</label>
                                 <input id="certificate" name="certificate" type="text" value="{{certificate}}" required="required" class="form-control">
                                 <div class="valid-feedback animated fadeInRight">
                                     Correct !
@@ -287,6 +289,9 @@
                             <div class="md-form">
                                 <label for="habilitation">Numéro Habilitation</label>
                                 <input id="habilitation" name="habilitation" type="text" value="{{habilitation}}" required="required" class="form-control">
+                                <small id="phoneHelpBlock" class="form-text text-muted">
+                                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>Exemple: 04, Sinon Ecrivez &nbsp;(Non).
+                                </small>
                                 <div class="valid-feedback animated fadeInRight">
                                     Correct !
                                 </div>
@@ -306,12 +311,12 @@
                                 <select class="custom-select browser-default" name="status" id="status" value="{{status}}" required="required">
                                     {{#select status}}
                                         <option value="" disabled selected>Status Professionel</option>
-                                        <option value="AMT">Agent de Maitrise</option>
+                                        <option value="Agent de Maitrise">Agent de Maitrise</option>
                                         <option value="Conducteur">Conducteur</option>
-                                        <option value="Responsable_RH">Responsable RH</option>
-                                        <option value="Responsable_IEFR">Responsable IEFR</option>
-                                        <option value="Responsable_Mouvement">Responsable Mouvement</option>
-                                        <option value="Responsable_Exploitation">esponsable Exploitation</option>
+                                        <option value="Responsable RH">Responsable RH</option>
+                                        <option value="Responsable IEFR">Responsable IEFR</option>
+                                        <option value="Responsable Mouvement">Responsable Mouvement</option>
+                                        <option value="Responsable Exploitation">esponsable Exploitation</option>
                                     {{/select}}
                                 </select>
                                 <div class="valid-feedback animated fadeInRight">
@@ -401,7 +406,7 @@
                             <h5 class="font-weight-bold mb-4"><strong><u>4- Photo de Profile</u></strong></h5>
                     
                             <div class="mb-4 d-flex justify-content-center">
-                                <img src="/img/image-placeholder.jpg" class="img-fluid" style="height:258px; width:258px;" id="filePreview" alt="example placeholder">
+                                <img src="/img/image-placeholder.jpg" class="img-fluid" style="height:231px; width:231px;" id="filePreview" alt="example placeholder">
                             </div>
                              
                             <div class="custom-file">
@@ -461,7 +466,7 @@
         if (input.files && input.files[0]) {
             var reader = new FileReader();
             reader.onload = function(e) {
-                $("#filePreview").attr('src', e.target.result).width(258).height(258);
+                $("#filePreview").attr('src', e.target.result).width(231).height(231);
             }
             reader.readAsDataURL(input.files[0]);
         }
