@@ -4,7 +4,6 @@ const Post = require('../../models/Post');
 const Category = require('../../models/Category');
 const { isEmpty, uploadDir } = require('../../helpers/upload-helpers');
 const fs = require('fs');
-const path = require('path');
 
 // Layout Admin Panel
 router.all('/*', (req, res, next)=>{
