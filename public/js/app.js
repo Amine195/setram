@@ -27,3 +27,12 @@ $(document).ready(function() {
       });
     }, false);
 })();
+
+// Stiky Content
+$(function () {
+  $(".sticky").sticky({
+      topSpacing: 90
+      , zIndex: 2
+      , stopper: "#footer"
+  });
+});

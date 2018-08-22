@@ -146,4 +146,18 @@ router.get('/agent_de_maitrise', (req, res)=>{
     });
 });
 
+// Get Profile
+router.get('/profile', (req, res)=>{
+    res.render('admin/users/profile');
+});
+
+// View One Post
+router.get('/view/:id', (req, res)=>{
+    User.findOne({_id: req.params.id}).then(user=>{
+        res.render('admin/users/profile', {user:user}); 
+    });
+});
+
+
+
 module.exports = router;
