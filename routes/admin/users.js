@@ -18,6 +18,20 @@ router.get('/', (req, res)=>{
     });
 });
 
+// Get Conducteur
+router.get('/conducteur', (req, res)=>{
+    User.find({status: "Conducteur"}).then(users=>{
+        res.render('admin/users/index', {users:users});
+    });
+});
+
+// Get AMT
+router.get('/agent_de_maitrise', (req, res)=>{
+    User.find({status: "Agent de Maitrise"}).then(users=>{
+        res.render('admin/users/index', {users:users});
+    });
+});
+
 // Get New User
 router.get('/create', (req, res)=>{
     res.render('admin/users/create');
@@ -132,29 +146,10 @@ router.post('/create', (req, res)=>{
     }
 });
 
-// Get Conducteur
-router.get('/conducteur', (req, res)=>{
-    User.find({status: "Conducteur"}).then(users=>{
-        res.render('admin/users/index', {users:users});
-    });
-});
-
-// Get AMT
-router.get('/agent_de_maitrise', (req, res)=>{
-    User.find({status: "Agent de Maitrise"}).then(users=>{
-        res.render('admin/users/agent_de_maitrise', {users:users});
-    });
-});
-
-// Get Profile
-router.get('/profile', (req, res)=>{
-    res.render('admin/users/profile');
-});
-
-// View One Post
+// View Profile One User
 router.get('/view/:id', (req, res)=>{
     User.findOne({_id: req.params.id}).then(user=>{
-        res.render('admin/users/profile', {user:user}); 
+        res.render('admin/users/view', {user:user}); 
     });
 });
 
