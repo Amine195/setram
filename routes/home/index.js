@@ -32,9 +32,4 @@ router.get('/about', (req, res)=>{
     res.render('home/about');
 });
 
-// Get Login Page
-router.get('/login', (req, res)=>{
-    res.render('home/login');
-});
-
 module.exports = router;

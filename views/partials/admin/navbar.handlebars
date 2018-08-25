@@ -11,12 +11,45 @@
     <ul class="nav navbar-nav nav-flex-icons ml-auto">
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Mon Compte
+                {{user.lastName}}
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="#"><i class="fa fa-user"></i>&nbsp;&nbsp; Mon Profile</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-power-off" aria-hidden="true"></i>&nbsp;&nbsp; Logout</a>
+                <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal"><i class="fa fa-power-off" aria-hidden="true"></i>&nbsp;&nbsp; Logout</a>
             </div>
         </li>
     </ul>
 </nav>
+
+<!-- Central Modal Medium Danger -->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-notify modal-danger" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <p class="heading lead">Prêt à Partir ?</p>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="fa fa-sign-out fa-4x mb-3 animated rotateIn" aria-hidden="true"></i>
+                    <p>Sélectionnez Déconnexion Ci-Dessous Si Vous êtes Prêt à Terminer Votre Session En Cours.</p>
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center">
+                <a href="/auth/logout" type="button" class="btn btn-danger">Se Déconnecter <i class="fa fa-check white-text ml-1"></i></a>
+                <a type="button" class="btn btn-outline-danger waves-effect" data-dismiss="modal">Non, Merci</a>
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+<!-- Central Modal Medium Danger-->

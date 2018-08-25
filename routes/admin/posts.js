@@ -4,9 +4,10 @@ const Post = require('../../models/Post');
 const Category = require('../../models/Category');
 const { isEmpty, uploadDir } = require('../../helpers/upload-helpers');
 const fs = require('fs');
+const {userAuthenticated} = require('../../helpers/authentication');
 
 // Layout Admin Panel
-router.all('/*', (req, res, next)=>{
+router.all('/*', userAuthenticated, (req, res, next)=>{
     req.app.locals.layout = 'admin';
     next();
 });

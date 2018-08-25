@@ -8,6 +8,16 @@
     </div>
 {{/if}}
 
+{{#if error}}
+    <div class="container">
+        <div class="col-md-12 d-flex justify-content-center">
+            <div class="alert alert-dismissible fade show" role="alert" style="color:#F44336; background-color:#f443361a; border-color:#F44336;">
+                    <p class="pb-0 mb-0"><i class="fa fa-times-circle mr-2" aria-hidden="true"></i> {{error}}</p>
+            </div>
+        </div>
+    </div>
+{{/if}}
+
 {{#if success_message}}
     <div class="alert alert-dismissible fade show" role="alert" style="color:#8bc34a; background-color:#8bc34a1a; border-color:#8bc34a;">
         <h5 class="alert-heading mb-1"><i class="fa fa-check-circle" aria-hidden="true"></i> Success</h5>
