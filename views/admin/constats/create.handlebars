@@ -1,0 +1,337 @@
+
+<style>
+    body{
+        background-color: #9e9e9e2e;
+    }
+    .breadcrumb{
+        background-color: #607d8b2e
+    }
+    .select-dropdown{
+        color: #7A7A7A;
+    }
+    .md-form label {
+        font-size: 0.9rem;
+    }
+    .scrollspy-example {
+        height: 333px;
+    }
+</style>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="/admin/constats">Constat Proffesionnel</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Nouvel Constat Pour L'Agent <span class="red-text">{{userconstat.lastName}} {{userconstat.firstName}}</span></li>
+  </ol>
+</nav>
+
+{{> admin/msgs}}
+
+<!-- Grid row -->
+<div class="row d-flex justify-content-center">
+
+    <!-- Grid column -->
+    <div class="container-fluid">
+
+        <form class="md-form mt-0 needs-validation" action="/admin/constats/create/{{userconstat.id}}" method="post" novalidate>
+
+            <input type="hidden" name="agentConserneConstat" id="agentConserneConstat" value="{{userconstat.lastName}} {{userconstat.firstName}}" required="required">
+            <input type="hidden" name="lastNameConstat" id="lastNameConstat" value="{{userconstat.lastName}}" required="required">
+            <input type="hidden" name="firstNameConstat" id="firstNameConstat" value="{{userconstat.firstName}}" required="required">
+            <input type="hidden" name="matriculeConstat" id="matriculeConstat" value="{{userconstat.matricule}}" required="required">
+            <input type="hidden" name="fonctionConstat" id="fonctionConstat" value="{{userconstat.status}}" required="required">
+                
+            <div class="row">
+
+                <div class="col-md-8">
+
+                    <div class="card">
+
+                        <div class="card-body px-lg-5">
+
+                            <p class="mb-1" style="font-size:15px;"><strong>ETABLI PAR:</strong></p>
+                            <div class="form-group">
+                                <select class="custom-select browser-default" name="etabliParConstat" id="etabliParConstat" value="{{etabliParConstat}}" required="required">
+                                    {{#select etabliParConstat}}
+                                        <option value="" disabled selected>Select Name</option>
+                                        {{#each users}}                                          
+                                            <option value="{{lastName}} {{firstName}}">{{lastName}} {{firstName}}</option>
+                                        {{/each}}
+                                    {{/select}}
+                                </select>
+                                <div class="valid-feedback animated fadeInRight">
+                                    Correct !
+                                </div>
+                                <div class="invalid-feedback animated fadeInRight">
+                                    Veuillez Selectionner Un Nom.
+                                </div>
+                            </div>
+
+                            <p class="mb-1" style="font-size:15px;"><strong>DATE:</strong></p>
+                            <div class="row">
+                                <div class="col-4 form-group">
+                                        <select class="custom-select browser-default" name="createdayConstat" id="createdayConstat" value="{{createdayConstat}}" required="required">
+                                        {{#select createdayConstat}}
+                                            <option value="" disabled selected>Jour</option>
+                                            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
+                                            <option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option>
+                                            <option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
+                                            <option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option>
+                                            <option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option>
+                                            <option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option>
+                                            <option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option>
+                                            <option value="29">29</option><option value="30">30</option><option value="31">31</option>
+                                        {{/select}}
+                                    </select>
+                                    <div class="valid-feedback animated fadeInRight">
+                                        Correct !
+                                    </div>
+                                    <div class="invalid-feedback animated fadeInRight">
+                                        Veuillez Selectionner Une journée.
+                                    </div>
+                                </div>
+                                <div class="col-4 form-group">
+                                        <select class="custom-select browser-default" name="createmonthConstat" id="createmonthConstat" value="{{createmonthConstat}}" required="required">
+                                        {{#select createmonthConstat}}
+                                            <option value="" disabled selected>Mois</option>
+                                            <option value="Janvier">Janvier</option>
+                                            <option value="Fevrier">Février</option>
+                                            <option value="Mars">Mars</option>
+                                            <option value="Avril">Avril</option>
+                                            <option value="Mai">Mai</option>
+                                            <option value="Juin">Juin</option>
+                                            <option value="Juillet">Juillet</option>
+                                            <option value="Aout">Aout</option>
+                                            <option value="Septembre">Septembre</option>
+                                            <option value="Octobre">Octobre</option>
+                                            <option value="November">November</option>
+                                            <option value="Decembre">Décembre</option>
+                                        {{/select}}
+                                    </select>
+                                    <div class="valid-feedback animated fadeInRight">
+                                        Correct !
+                                    </div>
+                                    <div class="invalid-feedback animated fadeInRight">
+                                        Veuillez Selectionner Un Mois.
+                                    </div>
+                                </div>
+                                <div class="col-4 form-group">
+                                        <select class="custom-select browser-default" name="createyearConstat" id="createyearConstat" value="{{createyearConstat}}" required="required">
+                                        {{#select createyearConstat}}
+                                            <option value="" disabled selected>Année</option>
+                                            <option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option>
+                                            <option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option>
+                                            <option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option>
+                                        {{/select}}
+                                    </select>
+                                    <div class="valid-feedback animated fadeInRight">
+                                        Correct !
+                                    </div>
+                                    <div class="invalid-feedback animated fadeInRight">
+                                        Veuillez Selectionner Une Année.
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    
+                    <br>
+
+                    <div class="card">
+                        <div class="card-body px-lg-5">
+
+                            <div class="md-form mb-1 mt-2">
+                                <input id="serviceAgentConstat" name="serviceAgentConstat" type="text" value="{{serviceAgentConstat}}" required="required" class="form-control">
+                                <label for="serviceAgentConstat">Service Agent</label>
+                                <div class="valid-feedback animated fadeInRight">
+                                    Correct !
+                                </div>
+                                <div class="invalid-feedback animated fadeInRight">
+                                    Veuillez Entrer Un Service Agent.
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="md-form">
+                                        <input id="priseServiceConstat" name="priseServiceConstat" type="text" value="{{priseServiceConstat}}" required="required" class="form-control">
+                                        <label for="priseServiceConstat">Heure / Lieu début de service</label>
+                                        <div class="valid-feedback animated fadeInRight">
+                                            Correct !
+                                        </div>
+                                        <div class="invalid-feedback animated fadeInRight">
+                                            Veuillez Entrer Une Heure / Lieu début de service.
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="col-md-6">
+                                    <div class="md-form">
+                                        <input id="finServiceConstat" name="finServiceConstat" type="text" value="{{finServiceConstat}}" required="required" class="form-control">
+                                        <label for="finServiceConstat">Heure / Lieu fin de service</label>
+                                        <div class="valid-feedback animated fadeInRight">
+                                            Correct !
+                                        </div>
+                                        <div class="invalid-feedback animated fadeInRight">
+                                            Veuillez Confirmer Une Heure / Lieu fin de service.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="card">
+                        <div class="card-body px-lg-5">
+
+                            <div class="md-form">
+                                <input id="motifConstat" name="motifConstat" type="text" value="{{motifConstat}}" required="required" class="form-control">
+                                <label for="motifConstat">Motif</label>
+                                <div class="valid-feedback animated fadeInRight">
+                                    Correct !
+                                </div>
+                                <div class="invalid-feedback animated fadeInRight">
+                                    Veuillez Entrer Un Service Agent.
+                                </div>
+                            </div>
+
+                            <div class="md-form">
+                                <textarea type="text" id="resumeFaitConstat" name="resumeFaitConstat" class="md-textarea form-control" rows="5" required="required">{{resumeFaitConstat}}</textarea>
+                                <label for="resumeFaitConstat">Resumé Du Fait</label>
+                                <div class="valid-feedback animated fadeInRight">
+                                    Correct !
+                                </div>
+                                <div class="invalid-feedback animated fadeInRight">
+                                    Veuillez Entrer Le Resumé Du Fait.
+                                </div>
+                            </div>
+                             <div class="md-form">
+                                <textarea type="text" id="explicationAgentConstat" name="explicationAgentConstat" class="md-textarea form-control" rows="5" required="required">{{explicationAgentConstat}}</textarea>
+                                <label for="explicationAgent">Explication De L'Agent</label>
+                                <div class="valid-feedback animated fadeInRight">
+                                    Correct !
+                                </div>
+                                <div class="invalid-feedback animated fadeInRight">
+                                    Veuillez Entrer L'Explication De L'Agent.
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <br>
+                    <!-- Five Step -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body px-lg-5">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            
+                                        </div>
+                                        <div class="col-4">
+                                            
+                                        </div>
+                                        <div class="col-4">
+                                            <button class="btn btn-success btn-rounded float-right" type="submit">Valider</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>       
+                
+                </div>
+ 
+                <div class="col-md-4">
+
+                        <!-- Card -->
+                        <div class="card testimonial-card ">
+
+                            <!-- Bacground color -->
+                            <div class="card-up indigo lighten-1">
+                            </div>
+
+                            <!-- Avatar -->
+                            <div class="avatar mx-auto white"><img src="/uploads/{{userconstat.file}}" class="rounded-circle">
+                            </div>
+
+                            <div class="card-body">
+                                <!-- Name -->
+                                <div class="text-center">
+                                    <h5 class="mb-2 font-weight-bold">
+                                        {{userconstat.lastName}} <br>
+                                        {{userconstat.firstName}} <br>
+                                    </h5>
+
+                                    <h5><span class="badge badge-danger">{{userconstat.status}}</span></h5>
+                                </div>
+                                
+                                <ul class="list-group mt-3 mb-3">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center" style="font-size:15px;">
+                                        <u>Numéro de Matricule:</u>
+                                        <span class="badge badge-primary badge-pill p-2">{{userconstat.matricule}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center" style="font-size:15px;">
+                                        <u>Habilitation Numéro:</u>
+                                        <span class="badge badge-primary badge-pill p-2">{{userconstat.habilitation}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center" style="font-size:15px;">
+                                        <u>Date d'hadmition:</u>
+                                        <span class="badge badge-primary badge-pill p-2">{{userconstat.admition.admitionday}} {{userconstat.admition.admitionmonth}} {{userconstat.admition.admitionyear}}</span>
+                                    </li>
+                                </ul>
+
+                                <ul class="list-group mt-3 mb-3">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center" style="font-size:15px;">
+                                        <u>Email:</u>
+                                        <span class="badge badge-primary badge-pill p-2">{{userconstat.email}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center" style="font-size:15px;">
+                                        <u>Numéro De Tel:</u>
+                                        <span class="badge badge-primary badge-pill p-2">{{userconstat.phone}}</span>
+                                    </li>
+                                </ul>
+                                
+                            </div>
+
+                        </div>
+                        <!-- Card -->
+
+                        <br>
+
+                         <div class="card">
+
+                            <div class="card-body px-lg-5">
+
+                                <h5 class="font-weight-bold d-flex justify-content-center"><strong><u>Changer L'Agent Conserne ?</u></strong></h5>
+                                <br>
+
+                                <!--Spied element-->
+                                <div class="scrollspy-example p-0">
+                                    <div class="list-group list-group-flush">
+                                        {{#each users}}
+                                            <a href="/admin/constats/create/{{id}}" class="list-group-item list-group-item-action waves-effect">{{lastName}} {{firstName}}</a>
+                                        {{/each}}
+                                    </div>
+                                </div>
+                                <!--/.Spied element-->
+
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+
+            <br><br><br><br>
+
+        </form>
+            
+    </div>
+    <!-- Grid column -->
+
+</div>
+<!-- Grid row -->
