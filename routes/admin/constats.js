@@ -41,38 +41,42 @@ router.post('/create/:id', (req, res)=>{
         res.redirect('/admin/constats/create/'+req.params.id)
     } else {
 
-        const newConstat = new Constat({
+        User.findOne({_id: req.params.id}).then(user=>{
 
-            etabliParConstat: req.body.etabliParConstat,
-            agentConserneConstat: req.body.agentConserneConstat,
-            createConstat: {
-                createdayConstat: req.body.createdayConstat,
-                createmonthConstat: req.body.createmonthConstat,
-                createyearConstat: req.body.createyearConstat
-            },
-            lastNameConstat: req.body.lastNameConstat,
-            firstNameConstat: req.body.firstNameConstat,
-            matriculeConstat: req.body.matriculeConstat,
-            fonctionConstat: req.body.fonctionConstat,
-            serviceAgentConstat: req.body.serviceAgentConstat,
-            priseServiceConstat: req.body.priseServiceConstat,
-            finServiceConstat: req.body.finServiceConstat,
-            motifConstat: req.body.motifConstat,
-            resumeFaitConstat: req.body.resumeFaitConstat,
-            explicationAgentConstat: req.body.explicationAgentConstat
+            const newConstat = new Constat({
 
-        });
+                etabliParConstat: req.body.etabliParConstat,
+                agentConserneConstat: req.body.agentConserneConstat,
+                createConstat: {
+                    createdayConstat: req.body.createdayConstat,
+                    createmonthConstat: req.body.createmonthConstat,
+                    createyearConstat: req.body.createyearConstat
+                },
+                lastNameConstat: req.body.lastNameConstat,
+                firstNameConstat: req.body.firstNameConstat,
+                matriculeConstat: req.body.matriculeConstat,
+                fonctionConstat: req.body.fonctionConstat,
+                serviceAgentConstat: req.body.serviceAgentConstat,
+                priseServiceConstat: req.body.priseServiceConstat,
+                finServiceConstat: req.body.finServiceConstat,
+                motifConstat: req.body.motifConstat,
+                resumeFaitConstat: req.body.resumeFaitConstat,
+                explicationAgentConstat: req.body.explicationAgentConstat
+    
+            });
 
-        newConstat.save().then(savedConstat => {
-            req.flash('success_message', `Constat De L'Agent ${savedConstat.agentConserneConstat} Created Successfully`);
-            res.redirect('/admin/constats');
-        }).catch(error => {
-            console.log('could not save post');
-            res.redirect('/admin/constats');
+            user.constats.push(newConstat);
+            user.save().then(savedUser=>{
+                newConstat.save().then(savedConstat => {
+                    req.flash('success_message', `Constat De L'Agent ${savedConstat.agentConserneConstat} Created Successfully`);
+                    res.redirect('/admin/constats');
+                }).catch(error => {
+                    console.log('could not save post');
+                    res.redirect('/admin/constats');
+                });
+            });
         });
     }
 });
-
-
 
 module.exports = router;

@@ -24,6 +24,12 @@ const UserSchema = new Schema({
 
     // Avatar
     file: String,
+
+    // Constat Professionel
+    constats: [{
+        type: Schema.Types.ObjectId,
+        ref:'constats'
+    }]
     
 });
 

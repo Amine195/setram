@@ -1,0 +1,87 @@
+<style>
+    body{
+        background-color: #9e9e9e2e;
+    }
+    .breadcrumb{
+        background-color: #607d8b2e
+    }
+</style>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Comments</li>
+  </ol>
+</nav>
+
+{{> admin/msgs}}
+
+<!-- Material form login -->
+<div class="card">
+
+    <!--Card content-->
+    <div class="card-body px-lg-5">
+
+        <br>
+        <h4 class="font-weight-bold"><strong><u>ALL COMMENTS</u></strong></h4>
+        <br>
+
+        <div class="table-responsive">
+
+            <table class="table">
+
+                <thead class="grey lighten-2">
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">owner</th>
+                        <th scope="col">Date</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                {{#each comments}}
+                    <tr>
+                        <th scope="row">{{id}}</th>
+                        <td>{{user.lastName}}</td>
+                        <td>{{generateTime date 'Do-MM-YYYY'}}</td>
+                        <td></td>
+                        <td>
+                            <form action="/admin/posts/" method="post">
+                                <button type="submit" class="btn btn-outline-danger waves-effect btn-sm m-0">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {{/each}}
+                </tbody>
+
+            </table>
+            
+        </div>
+
+    </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end mr-5">
+            <!--Previous-->
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>
+
+            <!--Numbers-->
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+
+            <!--Next-->
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+</div>
+<!-- Material form login -->
+
+<br><br><br>

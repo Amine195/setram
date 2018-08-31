@@ -38,7 +38,7 @@
                         <div class="card-body px-lg-5">
 
                             <h5 class="font-weight-bold"><strong><u>Compte Personnel</u></strong></h5>
-                            <p class="mb-1" style="font-size:15px;"><strong>Email:</strong> {{user.email}}</p>
+                            <p class="mb-1" style="font-size:15px;"><strong>Email:</strong> {{userview.email}}</p>
 
                         </div>
                     </div>
@@ -50,11 +50,11 @@
                         <div class="card-body px-lg-5">
 
                             <h5 class="font-weight-bold"><strong><u>Information Personnel</u></strong></h5>
-                            <p class="mt-3" style="font-size:15px;"><strong>Address:</strong> {{user.address}}</p>
-                            <p class="mt-1" style="font-size:15px;"><strong>Numéro de Téléphone:</strong> {{user.phone}}</p>
-                            <p class="mt-1" style="font-size:15px;"><strong>Diplome, Spécialité:</strong> {{user.certificate}}</p>
-                            <p class="mt-1" style="font-size:15px;"><strong>Situation Familiale:</strong> {{user.situation}}</p>
-                            <p class="mt-1 mb-1" style="font-size:15px;"><strong>Date de Naissance:</strong> {{user.birth.birthday}} {{user.birth.birthmonth}} {{user.birth.birthyear}}</p>
+                            <p class="mt-3" style="font-size:15px;"><strong>Address:</strong> {{userview.address}}</p>
+                            <p class="mt-1" style="font-size:15px;"><strong>Numéro de Téléphone:</strong> {{userview.phone}}</p>
+                            <p class="mt-1" style="font-size:15px;"><strong>Diplome, Spécialité:</strong> {{userview.certificate}}</p>
+                            <p class="mt-1" style="font-size:15px;"><strong>Situation Familiale:</strong> {{userview.situation}}</p>
+                            <p class="mt-1 mb-1" style="font-size:15px;"><strong>Date de Naissance:</strong> {{userview.birth.birthday}} {{userview.birth.birthmonth}} {{userview.birth.birthyear}}</p>
 
                         </div>
                     </div>
@@ -65,7 +65,7 @@
 
                         <div class="card-body px-lg-5">
 
-                            <h5 class="mb-4 font-weight-bold"><strong><u>Constat Professionel</u></strong> &nbsp;<span class="badge badge-danger">5</span></h5>
+                            <h5 class="mb-4 font-weight-bold"><strong><u>Constat Professionel</u></strong> &nbsp;<span class="badge badge-danger">{{userview.constats.length}}</span></h5>
 
                             <div class="table-responsive">
 
@@ -81,26 +81,14 @@
                                     </thead>
 
                                     <tbody>
-                                    
+                                    {{#each userview.constats}}
                                         <tr>
                                             <th scope="row">29 juin 2015</th>
-                                            <td>Retard en prise de service</td>
+                                            <td>{{motifConstat}}</td>
                                             <td></td>
                                             <td><a href="#" class="btn btn-outline-success waves-effect btn-sm m-0 float-right">Consulter</a></td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">15 Mars 2018</th>
-                                            <td>Non Respect des consignes</td>
-                                            <td></td>
-                                            <td><a href="#" class="btn btn-outline-success waves-effect btn-sm m-0 float-right">Consulter</a></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">04 decembre 2016</th>
-                                            <td>Non respect de la tenu professionel</td>
-                                            <td></td>
-                                            <td><a href="#" class="btn btn-outline-success waves-effect btn-sm m-0 float-right">Consulter</a></td>
-                                        </tr>
-                                       
+                                    {{/each}}  
                                     </tbody>
 
                                 </table>
@@ -181,32 +169,32 @@
                             </div>
 
                             <!-- Avatar -->
-                            <div class="avatar mx-auto white"><img src="/uploads/{{user.file}}" class="rounded-circle">
+                            <div class="avatar mx-auto white"><img src="/uploads/{{userview.file}}" class="rounded-circle">
                             </div>
 
                             <div class="card-body">
                                 <!-- Name -->
                                 <div class="text-center">
                                     <h5 class="mb-2 font-weight-bold">
-                                        {{user.lastName}} <br>
-                                        {{user.firstName}} <br>
+                                        {{userview.lastName}} <br>
+                                        {{userview.firstName}} <br>
                                     </h5>
 
-                                    <h5><span class="badge badge-danger">{{user.status}}</span></h5>
+                                    <h5><span class="badge badge-danger">{{userview.status}}</span></h5>
                                 </div>
                                 
                                 <ul class="list-group mt-3 mb-3">
                                     <li class="list-group-item d-flex justify-content-between align-items-center" style="font-size:15px;">
                                         <u>Numéro de Matricule:</u>
-                                        <span class="badge badge-primary badge-pill p-2">{{user.matricule}}</span>
+                                        <span class="badge badge-primary badge-pill p-2">{{userview.matricule}}</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center" style="font-size:15px;">
                                         <u>Habilitation Numéro:</u>
-                                        <span class="badge badge-primary badge-pill p-2">{{user.habilitation}}</span>
+                                        <span class="badge badge-primary badge-pill p-2">{{userview.habilitation}}</span>
                                     </li>
                                     <li class="list-group-item d-flex justify-content-between align-items-center" style="font-size:15px;">
                                         <u>Date d'hadmition:</u>
-                                        <span class="badge badge-primary badge-pill p-2">{{user.admition.admitionday}} {{user.admition.admitionmonth}} {{user.admition.admitionyear}}</span>
+                                        <span class="badge badge-primary badge-pill p-2">{{userview.admition.admitionday}} {{userview.admition.admitionmonth}} {{userview.admition.admitionyear}}</span>
                                     </li>
                                 </ul>
                                 <!-- Quotation -->

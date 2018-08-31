@@ -62,6 +62,7 @@ router.post('/create', (req, res)=>{
     if(req.body.password !== req.body.passwordConfirm){ errors.push({message: "Veuillez Vérifier Le Mot de Passe"}); }
 
     if (errors.length > 0){
+        
         res.render('admin/users/create', {
             errors: errors,
             email: req.body.email,
@@ -148,8 +149,8 @@ router.post('/create', (req, res)=>{
 
 // View Profile One User
 router.get('/view/:id', (req, res)=>{
-    User.findOne({_id: req.params.id}).then(user=>{
-        res.render('admin/users/view', {user:user}); 
+    User.findOne({_id: req.params.id}).populate('constats').then(userview=>{
+        res.render('admin/users/view', {userview:userview});
     });
 });
 
