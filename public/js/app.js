@@ -41,4 +41,6 @@ $(function () {
 $('.datepicker').pickadate();
 
 // Time Picker Initialization
-$('#input_starttime').pickatime({});
+$('#input_starttime').pickatime({
+  twelvehour: true,
+});

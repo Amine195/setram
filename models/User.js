@@ -29,6 +29,12 @@ const UserSchema = new Schema({
     constats: [{
         type: Schema.Types.ObjectId,
         ref:'constats'
+    }],
+
+    // Pasf Professionel
+    pasfs: [{
+        type: Schema.Types.ObjectId,
+        ref:'pasfs'
     }]
     
 });
