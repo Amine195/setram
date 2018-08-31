@@ -149,7 +149,7 @@ router.post('/create', (req, res)=>{
 
 // View Profile One User
 router.get('/view/:id', (req, res)=>{
-    User.findOne({_id: req.params.id}).populate('constats').then(userview=>{
+    User.findOne({_id: req.params.id}).populate('constats').populate('pasfs').then(userview=>{
         res.render('admin/users/view', {userview:userview});
     });
 });

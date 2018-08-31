@@ -1,0 +1,658 @@
+
+<style>
+    body{
+        background-color: #9e9e9e2e;
+    }
+    .breadcrumb{
+        background-color: #607d8b2e
+    }
+    .select-dropdown{
+        color: #7A7A7A;
+    }
+    .md-form label {
+        font-size: 0.9rem;
+    }
+    .scrollspy-example {
+        height: 333px;
+    }
+</style>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+    <li class="breadcrumb-item"><a href="/admin/pasfs">Plan D'Action De Securité Férroviaire</a></li>
+    <li class="breadcrumb-item active" aria-current="page">L'Agent Concerné <span class="red-text">{{userpasf.lastName}} {{userpasf.firstName}}</span></li>
+  </ol>
+</nav>
+
+{{> admin/msgs}}
+
+<!-- Grid row -->
+<div class="row d-flex justify-content-center">
+
+    <!-- Grid column -->
+    <div class="container-fluid">
+
+        <form class="mt-0 needs-validation" action="/admin/pasfs/create/{{userpasf.id}}" method="post" novalidate>
+
+            <input type="hidden" name="lastNamePasf" id="lastNamePasf" value="{{userpasf.lastName}}" required="required">
+            <input type="hidden" name="firstNamePasf" id="firstNamePasf" value="{{userpasf.firstName}}" required="required">
+            <input type="hidden" name="matriculePasf" id="matriculePasf" value="{{userpasf.matricule}}" required="required">
+            <input type="hidden" name="fonctionPasf" id="fonctionPasf" value="{{userpasf.status}}" required="required">
+                
+            <div class="row">
+
+                <div class="col-md-8">
+
+                    <div class="card">
+
+                        <div class="card-body px-lg-5">
+
+                            <p class="mb-1" style="font-size:15px;"><strong>ETABLI PAR:</strong></p>
+                            <div class="form-group">
+                                <select class="custom-select browser-default" name="etabliParPasf" id="etabliParPasf" value="{{etabliParPasf}}" required="required">
+                                    {{#select etabliParPasf}}
+                                        <option value="" disabled selected>Select Name</option>
+                                        {{#each users}}                                      
+                                            <option value="{{lastName}} {{firstName}}">{{lastName}} {{firstName}}</option>
+                                        {{/each}}
+                                    {{/select}}
+                                </select>
+                                <div class="valid-feedback animated fadeInRight">
+                                    Correct !
+                                </div>
+                                <div class="invalid-feedback animated fadeInRight">
+                                    Veuillez Selectionner Un Nom.
+                                </div>
+                            </div>
+
+                            <p class="mb-1" style="font-size:15px;"><strong>FONCTION:</strong></p>
+                            <div class="form-group">
+                                <select class="custom-select browser-default" name="fonctionetabliParPasf" id="fonctionetabliParPasf" value="{{fonctionetabliParPasf}}" required="required">                               
+                                    <option value="" disabled selected>Status Professionel</option>
+                                    <option value="Agent de Maitrise">Agent de Maitrise</option>
+                                    <option value="Conducteur">Conducteur</option>
+                                    <option value="Responsable RH">Responsable RH</option>
+                                    <option value="Responsable IEFR">Responsable IEFR</option>
+                                    <option value="Responsable Mouvement">Responsable Mouvement</option>
+                                    <option value="Responsable Exploitation">esponsable Exploitation</option>
+                                </select>
+                                <div class="valid-feedback animated fadeInRight">
+                                    Correct !
+                                </div>
+                                <div class="invalid-feedback animated fadeInRight">
+                                    Veuillez Selectionner Un Nom.
+                                </div>
+                            </div>
+
+                            <p class="mb-1" style="font-size:15px;"><strong>DATE:</strong></p>
+                            <div class="row">
+                                <div class="col-4 form-group">
+                                        <select class="custom-select browser-default" name="datedayPasf" id="datedayPasf" value="{{datedayPasf}}" required="required">
+                                      
+                                            <option value="" disabled selected>Jour</option>
+                                            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
+                                            <option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option>
+                                            <option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
+                                            <option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option>
+                                            <option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option>
+                                            <option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option>
+                                            <option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option>
+                                            <option value="29">29</option><option value="30">30</option><option value="31">31</option>
+                                      
+                                    </select>
+                                    <div class="valid-feedback animated fadeInRight">
+                                        Correct !
+                                    </div>
+                                    <div class="invalid-feedback animated fadeInRight">
+                                        Veuillez Selectionner Une journée.
+                                    </div>
+                                </div>
+                                <div class="col-4 form-group">
+                                        <select class="custom-select browser-default" name="datemonthPasf" id="datemonthPasf" value="{{datemonthPasf}}" required="required">
+                              
+                                            <option value="" disabled selected>Mois</option>
+                                            <option value="Janvier">Janvier</option>
+                                            <option value="Fevrier">Février</option>
+                                            <option value="Mars">Mars</option>
+                                            <option value="Avril">Avril</option>
+                                            <option value="Mai">Mai</option>
+                                            <option value="Juin">Juin</option>
+                                            <option value="Juillet">Juillet</option>
+                                            <option value="Aout">Aout</option>
+                                            <option value="Septembre">Septembre</option>
+                                            <option value="Octobre">Octobre</option>
+                                            <option value="November">November</option>
+                                            <option value="Decembre">Décembre</option>
+                                      
+                                    </select>
+                                    <div class="valid-feedback animated fadeInRight">
+                                        Correct !
+                                    </div>
+                                    <div class="invalid-feedback animated fadeInRight">
+                                        Veuillez Selectionner Un Mois.
+                                    </div>
+                                </div>
+                                <div class="col-4 form-group">
+                                        <select class="custom-select browser-default" name="dateyearPasf" id="dateyearPasf" value="{{dateyearPasf}}" required="required">
+                                       
+                                            <option value="" disabled selected>Année</option>
+                                            <option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option>
+                                            <option value="2014">2014</option><option value="2015">2015</option><option value="2016">2016</option><option value="2017">2017</option>
+                                            <option value="2018">2018</option><option value="2019">2019</option><option value="2020">2020</option><option value="2021">2021</option>
+                                      
+                                    </select>
+                                    <div class="valid-feedback animated fadeInRight">
+                                        Correct !
+                                    </div>
+                                    <div class="invalid-feedback animated fadeInRight">
+                                        Veuillez Selectionner Une Année.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="mb-1" style="font-size:15px;"><strong>A PARTIR DE:</strong></p>
+                                    <div class="row">
+                                        <div class="col-6 form-group">
+                                    
+                                            <select class="custom-select browser-default" name="momentdeheurePasf" id="momentdeheurePasf" value="{{momentdeheurePasf}}" required="required">
+                                        
+                                                <option value="" disabled selected>Heure</option>
+                                                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
+                                                <option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option>
+                                                <option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
+                                                <option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option>
+                                                <option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option>
+                                                <option value="21">21</option><option value="22">22</option><option value="23">23
+                                            
+                                            </select>
+                                            <div class="valid-feedback animated fadeInRight">
+                                                Correct !
+                                            </div>
+                                            <div class="invalid-feedback animated fadeInRight">
+                                                Veuillez Selectionner Une journée.
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-6 form-group">
+                                        
+                                            <select class="custom-select browser-default" name="momentdeminutePasf" id="momentdeminutePasf" value="{{momentdeminutePasf}}" required="required">
+                                        
+                                                <option value="" disabled selected>Minute</option>
+                                                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
+                                                <option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option>
+                                                <option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
+                                                <option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option>
+                                                <option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option>
+                                                <option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option>
+                                                <option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option>
+                                                <option value="29">29</option><option value="30">30</option><option value="32">32</option><option value="33">33</option>
+                                                <option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option>
+                                                <option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option>
+                                                <option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
+                                                <option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option>
+                                                <option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option>
+                                                <option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option>
+                                                <option value="58">58</option><option value="59">59</option><option value="60">60
+                                            
+                                            </select>
+                                            <div class="valid-feedback animated fadeInRight">
+                                                Correct !
+                                            </div>
+                                            <div class="invalid-feedback animated fadeInRight">
+                                                Veuillez Selectionner Une journée.
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <p class="mb-1" style="font-size:15px;"><strong>JUSQU'A:</strong></p>
+                                    <div class="row">
+                                        <div class="col-6 form-group">
+                                    
+                                            <select class="custom-select browser-default" name="momentaheurePasf" id="momentaheurePasf" value="{{momentaheurePasf}}" required="required">
+                                        
+                                                <option value="" disabled selected>Heure</option>
+                                                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
+                                                <option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option>
+                                                <option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
+                                                <option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option>
+                                                <option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option>
+                                                <option value="21">21</option><option value="22">22</option><option value="23">23
+                                            
+                                            </select>
+                                            <div class="valid-feedback animated fadeInRight">
+                                                Correct !
+                                            </div>
+                                            <div class="invalid-feedback animated fadeInRight">
+                                                Veuillez Selectionner Une journée.
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-6 form-group">
+                                        
+                                            <select class="custom-select browser-default" name="momentaminutePasf" id="momentaminutePasf" value="{{momentaminutePasf}}" required="required">
+                                        
+                                                <option value="" disabled selected>Minute</option>
+                                                <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option>
+                                                <option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option>
+                                                <option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
+                                                <option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option>
+                                                <option value="17">17</option><option value="18">18</option><option value="19">19</option><option value="20">20</option>
+                                                <option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option>
+                                                <option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option>
+                                                <option value="29">29</option><option value="30">30</option><option value="32">32</option><option value="33">33</option>
+                                                <option value="34">34</option><option value="35">35</option><option value="36">36</option><option value="37">37</option>
+                                                <option value="38">38</option><option value="39">39</option><option value="40">40</option><option value="41">41</option>
+                                                <option value="42">42</option><option value="43">43</option><option value="44">44</option><option value="45">45</option>
+                                                <option value="46">46</option><option value="47">47</option><option value="48">48</option><option value="49">49</option>
+                                                <option value="50">50</option><option value="51">51</option><option value="52">52</option><option value="53">53</option>
+                                                <option value="54">54</option><option value="55">55</option><option value="56">56</option><option value="57">57</option>
+                                                <option value="58">58</option><option value="59">59</option><option value="60">60
+                                            
+                                            </select>
+                                            <div class="valid-feedback animated fadeInRight">
+                                                Correct !
+                                            </div>
+                                            <div class="invalid-feedback animated fadeInRight">
+                                                Veuillez Selectionner Une journée.
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <p class="mb-1" style="font-size:15px;"><strong>LIGNE:</strong></p>
+                            <div class="form-group">
+                                <select class="custom-select browser-default" name="lignePasf" id="lignePasf" value="{{lignePasf}}" required="required">
+                                    <option value="" disabled selected>Select Name</option>                                   
+                                    <option value="L1 Tramway Sidi Bel Abbes">L1 Tramway Sidi Bel Abbes</option>
+                                </select>
+                                <div class="valid-feedback animated fadeInRight">
+                                    Correct !
+                                </div>
+                                <div class="invalid-feedback animated fadeInRight">
+                                    Veuillez Selectionner Un Nom.
+                                </div>
+                            </div>
+
+                            <p class="mb-1" style="font-size:15px;"><strong>NUMERO DE RAME:</strong></p>
+                            <div class="form-group">
+                                <select class="custom-select browser-default" name="numeroderamePasf" id="numeroderamePasf" value="{{numeroderamePasf}}" required="required">
+                                   
+                                    <option value="" disabled selected>Select Name</option>                                    
+                                    <option value="103">103</option>
+                                    <option value="111">111</option>
+                                    <option value="119">119</option>
+                                    <option value="127">127</option>
+                                    <option value="114">114</option>
+                                   
+                                </select>
+                                <div class="valid-feedback animated fadeInRight">
+                                    Correct !
+                                </div>
+                                <div class="invalid-feedback animated fadeInRight">
+                                    Veuillez Selectionner Un Nom.
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="card">
+                        <div class="card-body px-lg-5">
+                    
+                            <div class="md-form mb-1 mt-2">
+                                <input id="motifPasf" name="motifPasf" type="text" required="required" class="form-control">
+                                <label for="motifPasf">Motif</label>
+                                <div class="valid-feedback animated fadeInRight">
+                                    Correct !
+                                </div>
+                                <div class="invalid-feedback animated fadeInRight">
+                                    Veuillez Entrer Un Service Agent.
+                                </div>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-6">
+                                    <div class="md-form">
+                                        <input placeholder="Selected date" type="text" name="lemotifPasf" id="date-picker-example" class="form-control datepicker">
+                                        <label for="date-picker-example">LE</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="md-form">
+                                        <input placeholder="Selected time" type="text" name="amotifPasf" id="input_starttime" class="form-control timepicker">
+                                        <label for="input_starttime">A</label>
+                                    </div>
+                                </div>
+                    
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="card">
+                        <div class="card-body px-lg-5">
+
+                              <div class="table-responsive">
+
+                                <table class="table">
+
+                                    <thead class="grey lighten-2">
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
+                                            <th scope="col">Observation / Commentaire</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                       
+                                        <tr>
+                                            <th scope="row" class="align-middle">Uniforme conforme</th>
+                                            <td class="align-middle">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" name="okuniformePasf" id="okuniformePasf">
+                                                    <label class="custom-control-label" for="okuniformePasf"> Oui</label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <!-- Default input -->
+                                                <input type="text" name="commentaireuniformePasf" id="commentaireuniformePasf" class="form-control">
+                                            </td>
+                                           
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row" class="align-middle">Clé KC</th>
+                                            <td class="align-middle">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" name="okcleKCPasf" id="okcleKCPasf">
+                                                    <label class="custom-control-label" for="okcleKCPasf"> Oui</label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <!-- Default input -->
+                                                <input type="text" name="commentairecleKCPasf" id="commentairecleKCPasf" class="form-control">
+                                            </td>
+                                           
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row" class="align-middle">Clé de service</th>
+                                            <td class="align-middle">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" name="okcleservicePasf" id="okcleservicePasf">
+                                                    <label class="custom-control-label" for="okcleservicePasf"> Oui</label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <!-- Default input -->
+                                                <input type="text" id="okcleservicePasf" name="commentairecleservicePasf" class="form-control">
+                                            </td>
+                                           
+                                        </tr>
+
+                                         <tr>
+                                            <th scope="row" class="align-middle">Badge</th>
+                                            <td class="align-middle">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input" name="okbadgePasf" id="okbadgePasf">
+                                                    <label class="custom-control-label" for="okbadgePasf"> Oui</label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <!-- Default input -->
+                                                <input type="text" id="commentairebadgePasf" name="commentairebadgePasf" class="form-control">
+                                            </td>
+                                           
+                                        </tr>
+
+
+                                    </tbody>
+
+                                </table>
+                                
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <br>
+
+                     <div class="card">
+                        <div class="card-body px-lg-5">
+
+                              <div class="table-responsive">
+
+                                <table class="table">
+
+                                    <thead class="grey lighten-2">
+                                        <tr>
+                                            <th scope="col">Exercice opérationnelle</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                       
+                                        <tr>
+                                            <th scope="row">EO : Commande d’itinéraire</th>
+                                            <td style="padding-bottom: 0px;padding-top: 10px;">
+                                                <div class="form-group">
+                                                    <select class="custom-select browser-default" name="commandeitineraire" id="commandeitineraire" value="{{commandeitineraire}}" required="required">
+                                                        <option value="" disabled selected>Niveauxd’appréciation</option>                                
+                                                        <option value="Excellent">Excellent</option>
+                                                        <option value="Maîtrisé">Maîtrisé</option>                                
+                                                        <option value="à améliorer">à améliorer</option>
+                                                        <option value="Mauvais">Mauvais</option>
+                                                    </select>
+                                                    <div class="valid-feedback animated fadeInRight">
+                                                        Correct !
+                                                    </div>
+                                                    <div class="invalid-feedback animated fadeInRight">
+                                                        Veuillez Selectionner Un Nom.
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">EO : Franchissement d’un signal restrictif </th>
+                                            <td style="padding-bottom: 0px;padding-top: 10px;">
+                                                <div class="form-group">
+                                                    <select class="custom-select browser-default" name="franshisementsignalrestrictif" id="franshisementsignalrestrictif" value="{{franshisementsignalrestrictif}}" required="required">
+                                                        <option value="" disabled selected>Niveauxd’appréciation</option>  
+                                                        <option value="Excellent">Excellent</option>
+                                                        <option value="Maîtrisé">Maîtrisé</option>                                
+                                                        <option value="à améliorer">à améliorer</option>
+                                                        <option value="Mauvais">Mauvais</option>
+                                                    </select>
+                                                    <div class="valid-feedback animated fadeInRight">
+                                                        Correct !
+                                                    </div>
+                                                    <div class="invalid-feedback animated fadeInRight">
+                                                        Veuillez Selectionner Un Nom.
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                        <tr>
+                                            <th scope="row">EO : Connaissance des signaux</th> 
+                                            <td style="padding-bottom: 0px;padding-top: 10px;">
+                                               <div class="form-group">
+                                                    <select class="custom-select browser-default" name="connaissancesignaux" id="connaissancesignaux" value="{{connaissancesignaux}}" required="required">
+                                                        <option value="" disabled selected>Niveauxd’appréciation</option>   
+                                                        <option value="Excellent">Excellent</option>
+                                                        <option value="Maîtrisé">Maîtrisé</option>                                
+                                                        <option value="à améliorer">à améliorer</option>
+                                                        <option value="Mauvais">Mauvais</option>                                                    
+                                                    </select>
+                                                    <div class="valid-feedback animated fadeInRight">
+                                                        Correct !
+                                                    </div>
+                                                    <div class="invalid-feedback animated fadeInRight">
+                                                        Veuillez Selectionner Un Nom.
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+                                         <tr>
+                                            <th scope="row">EO : Procédure devant un signal restrictif</th>
+                                            <td style="padding-bottom: 0px;padding-top: 10px;">
+                                                <div class="form-group">
+                                                    <select class="custom-select browser-default" name="preceduredevantsignalrestrictif" id="preceduredevantsignalrestrictif" value="{{preceduredevantsignalrestrictif}}" required="required">
+                                                        <option value="" disabled selected>Niveauxd’appréciation</option>         <option value="Excellent">Excellent</option>
+                                                        <option value="Maîtrisé">Maîtrisé</option>                                
+                                                        <option value="à améliorer">à améliorer</option>
+                                                        <option value="Mauvais">Mauvais</option>
+                                                    </select>
+                                                    <div class="valid-feedback animated fadeInRight">
+                                                        Correct !
+                                                    </div>
+                                                    <div class="invalid-feedback animated fadeInRight">
+                                                        Veuillez Selectionner Un Nom.
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+
+
+                                    </tbody>
+
+                                </table>
+                                
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <br>
+                    <!-- Five Step -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body px-lg-5">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            
+                                        </div>
+                                        <div class="col-4">
+                                            
+                                        </div>
+                                        <div class="col-4">
+                                            <button class="btn btn-success btn-rounded float-right" type="submit">Valider</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>       
+                
+                </div>
+ 
+                <div class="col-md-4">
+
+                        <!-- Card -->
+                        <div class="card testimonial-card ">
+
+                            <!-- Bacground color -->
+                            <div class="card-up indigo lighten-1">
+                            </div>
+
+                            <!-- Avatar -->
+                            <div class="avatar mx-auto white"><img src="/uploads/1535125362101-01.jpg" class="rounded-circle">
+                            </div>
+
+                            <div class="card-body">
+                                <!-- Name -->
+                                <div class="text-center">
+                                    <h5 class="mb-2 font-weight-bold">
+                                        {{userpasf.lastName}} <br>
+                                        {{userpasf.firstName}} <br>
+                                    </h5>
+
+                                    <h5><span class="badge badge-danger">{{userpasf.status}}</span></h5>
+                                </div>
+                                
+                                <ul class="list-group mt-3 mb-3">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center" style="font-size:15px;">
+                                        <u>Numéro de Matricule:</u>
+                                        <span class="badge badge-primary badge-pill p-2">{{userpasf.matricule}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center" style="font-size:15px;">
+                                        <u>Habilitation Numéro:</u>
+                                        <span class="badge badge-primary badge-pill p-2">{{userpasf.habilitation}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center" style="font-size:15px;">
+                                        <u>Date d'hadmition:</u>
+                                        <span class="badge badge-primary badge-pill p-2">{{userpasf.admition.admitionday}} {{userpasf.admition.admitionmonth}} {{userpasf.admition.admitionyear}}</span>
+                                    </li>
+                                </ul>
+
+                                <ul class="list-group mt-3 mb-3">
+                                    <li class="list-group-item d-flex justify-content-between align-items-center" style="font-size:15px;">
+                                        <u>Email:</u>
+                                        <span class="badge badge-primary badge-pill p-2">{{userpasf.email}}</span>
+                                    </li>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center" style="font-size:15px;">
+                                        <u>Numéro De Tel:</u>
+                                        <span class="badge badge-primary badge-pill p-2">{{userpasf.phone}}</span>
+                                    </li>
+                                </ul>
+                                
+                            </div>
+
+                        </div>
+                        <!-- Card -->
+
+                        <br>
+
+                         <div class="card">
+
+                            <div class="card-body px-lg-5">
+
+                                <h5 class="font-weight-bold d-flex justify-content-center"><strong><u>Changer L'Agent Conserne ?</u></strong></h5>
+                                <br>
+
+                                <!--Spied element-->
+                                <div class="scrollspy-example p-0">
+                                    <div class="list-group list-group-flush">
+                                        {{#each users}}
+                                            <a href="/admin/pasfs/create/{{id}}" class="list-group-item list-group-item-action waves-effect">{{lastName}} {{firstName}}</a>
+                                         {{/each}}
+                                    </div>
+                                </div>
+                                <!--/.Spied element-->
+
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+
+            <br><br><br><br>
+
+        </form>
+            
+    </div>
+    <!-- Grid column -->
+
+</div>
+<!-- Grid row -->

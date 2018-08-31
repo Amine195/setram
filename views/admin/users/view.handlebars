@@ -106,7 +106,7 @@
 
                         <div class="card-body px-lg-5">
 
-                            <h5 class="mb-4 font-weight-bold"><strong><u>Plan d’Action De Securité Ferroviaire (PASF)</u></strong> &nbsp;<span class="badge badge-danger">3</span></h5>
+                            <h5 class="mb-4 font-weight-bold"><strong><u>Plan d’Action De Securité Ferroviaire (PASF)</u></strong> &nbsp;<span class="badge badge-danger">{{userview.pasfs.length}}</span></h5>
 
                              <div class="table-responsive">
 
@@ -122,26 +122,14 @@
                                     </thead>
 
                                     <tbody>
-                                    
+                                        {{#each userview.pasfs}}
                                         <tr>
                                             <th scope="row">24 avril 2018</th>
-                                            <td>Franchissement intempestif du signal de manœuvre</td>
+                                            <td>{{motifPasf}}</td>
                                             <td></td>
                                             <td><a href="#" class="btn btn-outline-success waves-effect btn-sm m-0 float-right">Consulter</a></td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">09 juin 2017</th>
-                                            <td>Accident matériel de la R107 avec un véhicule.</td>
-                                            <td></td>
-                                            <td><a href="#" class="btn btn-outline-success waves-effect btn-sm m-0 float-right">Consulter</a></td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row">14 octobre 2018</th>
-                                            <td>Erreur sur la commande du signal SI_F entrée-sortie dépôt  </td>
-                                            <td></td>
-                                            <td><a href="#" class="btn btn-outline-success waves-effect btn-sm m-0 float-right">Consulter</a></td>
-                                        </tr>
-                                       
+                                       {{/each}}
                                     </tbody>
 
                                 </table>

@@ -1,0 +1,137 @@
+<style>
+    body{
+        background-color: #9e9e9e2e;
+    }
+    .breadcrumb{
+        background-color: #607d8b2e
+    }
+    .scrollspy-example {
+        height: 300px;
+    }
+</style>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Constats</li>
+  </ol>
+</nav>
+
+{{> admin/msgs}}
+
+<!-- Material form login -->
+<div class="card">
+
+    <!--Card content-->
+    <div class="card-body px-lg-5">
+
+        <br>
+        <h4 class="font-weight-bold"><strong><u>ALL PASFS</u></strong></h4>
+        <br>
+
+        <div class="table-responsive">
+
+            <table class="table">
+
+                <thead class="grey lighten-2">
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Agent Conserné</th>
+                        <th scope="col">Etabli Par</th>
+                        <th scope="col">Motif</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
+                        <th scope="col"><span class="float-right"><a class="text-success" data-toggle="modal" data-target="#ModalMessage"><i class="fa fa-plus" aria-hidden="true"></i> Nouvelle</a></span></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {{#each pasfs}}
+                    <tr>
+                        <th scope="row">{{datePasf.datedayPasf}} {{datePasf.datemonthPasf}} {{datePasf.dateyearPasf}}</th>
+                        <td>{{lastNamePasf}} {{firstNamePasf}}</td>
+                        <td>{{etabliParPasf}}</td>
+                        <td>{{motifPasf}}</td>
+                        <td><a href="/admin/posts/view/" class="btn btn-outline-success waves-effect btn-sm m-0 float-right">View</a></td>
+                        <td><a href="/admin/posts/edit/" class="btn btn-outline-info waves-effect btn-sm m-0 float-right">Edit</a></td>
+                        <td>
+                            <form action="/admin/posts/" method="post">
+                                <button type="submit" class="btn btn-outline-danger waves-effect btn-sm m-0">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+
+            </table>
+            
+        </div>
+
+    </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-end mr-5">
+            <!--Previous-->
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>
+
+            <!--Numbers-->
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+
+            <!--Next-->
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+    </nav>
+
+</div>
+<!-- Material form login -->
+
+<br><br><br>
+
+{{!-- Modal Contact Core --}}
+
+<div class="modal fade" id="ModalMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <!--Content-->
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header text-center indigo">
+                <h5 class="modal-title white-text w-100 font-weight-bold py-2">Constat</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+
+        
+            <div class="text-center mb-5">
+                <i class="fa fa-file-text-o fa-4x mb-3 indigo-text animated rotateIn"></i>
+                <p>Créer Une Nouvelle Constat Professionnel !</p>
+                <p>Selectionner L'Agent Conserné</p>
+            </div>
+
+            <!--Spied element-->
+            <div class="scrollspy-example p-0">
+                <div class="list-group list-group-flush">
+                    {{#each users}}
+                        <a href="/admin/pasfs/create/{{id}}" class="list-group-item list-group-item-action waves-effect">{{lastName}} {{firstName}}</a>
+                    {{/each}}
+                </div>
+            </div>
+            <!--/.Spied element-->
+
+            </div>
+
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+
+{{!-- Modal Contact Core --}}
