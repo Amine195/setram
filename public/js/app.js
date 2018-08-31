@@ -36,3 +36,9 @@ $(function () {
       , stopper: "#footer"
   });
 });
+
+// Data Picker Initialization
+$('.datepicker').pickadate();
+
+// Time Picker Initialization
+$('#input_starttime').pickatime({});
