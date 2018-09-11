@@ -10,7 +10,7 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Comments</li>
+    <li class="breadcrumb-item active" aria-current="page">Posts</li>
   </ol>
 </nav>
 
@@ -23,7 +23,7 @@
     <div class="card-body px-lg-5">
 
         <br>
-        <h4 class="font-weight-bold"><strong><u>ALL COMMENTS</u></strong></h4>
+        <h4 class="font-weight-bold"><strong><u>ALL POSTS</u></strong></h4>
         <br>
 
         <div class="table-responsive">
@@ -32,28 +32,44 @@
 
                 <thead class="grey lighten-2">
                     <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">owner</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">file</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Comments</th>
                         <th scope="col">Date</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
+                        <th scope="col"><span class="float-right"><a href="/admin/posts/create" class="text-success"><i class="fa fa-plus" aria-hidden="true"></i> New</a></span></th>
                     </tr>
                 </thead>
 
                 <tbody>
-                {{#each comments}}
+                {{#each posts}}
                     <tr>
                         <th scope="row">{{id}}</th>
-                        <td>{{user.lastName}}</td>
-                        <td>{{generateTime date 'Do-MM-YYYY'}}</td>
-                        <td></td>
                         <td>
-                            <form action="/admin/comments/{{id}}?_method=DELETE" method="post">
+                            {{#if allowFile}}
+                                <img class="img-fluid" src="/uploads/{{file}}" alt="{{file}}" style="height:50px; width:80px;">
+                            {{else}}
+                                {{file}}
+                            {{/if}}
+                        </td>
+                        <td>{{title}}</td>
+                        <td>{{category.name}}</td>
+                        <td>{{status}}</td>
+                        <td>{{allowComments}}</td>
+                        <td>{{generateTime date 'Do-MM-YYYY'}}</td>
+                        <td><a href="/admin/posts/view/{{id}}" class="btn btn-outline-success waves-effect btn-sm m-0 float-right">View</a></td>
+                        <td><a href="/admin/posts/edit/{{id}}" class="btn btn-outline-info waves-effect btn-sm m-0 float-right">Edit</a></td>
+                        <td>
+                            <form action="/admin/posts/{{id}}?_method=DELETE" method="post">
                                 <button type="submit" class="btn btn-outline-danger waves-effect btn-sm m-0">Delete</button>
                             </form>
                         </td>
                     </tr>
-                {{/each}}
+                    {{/each}}
                 </tbody>
 
             </table>

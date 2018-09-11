@@ -12,6 +12,13 @@ router.all('/*', userAuthenticated, (req, res, next)=>{
     next();
 });
 
+// Get My Posts
+router.get('/my-posts', (req, res)=>{
+    Post.find({user: req.user.id}).sort({date:'desc'}).populate('category').then(posts=>{
+        res.render('admin/posts/my-posts', {posts:posts});
+    });
+});
+
 // Get Index Posts
 router.get('/', (req, res)=>{
     Post.find({}).sort({date:'desc'}).populate('category').then(posts=>{
@@ -76,6 +83,7 @@ router.post('/create', (req, res)=>{
         }
 
         const newPost = new Post({
+            user: req.user.id,
             title: req.body.title,
             status : req.body.status,
             allowComments: allowComments,
@@ -115,6 +123,7 @@ router.put('/edit/:id', (req, res)=>{
             allowComments = false;
         }
 
+        post.user = req.user.id;
         post.title = req.body.title;
         post.status = req.body.status;
         post.allowComments = allowComments;
@@ -145,11 +154,22 @@ router.put('/edit/:id', (req, res)=>{
 
 // Delete Post
 router.delete('/:id', (req, res)=>{
-    Post.findOne({_id: req.params.id}).then(post=>{
+    Post.findOne({_id: req.params.id})
+        .populate('comments')
+        .then(post=>{
+
         fs.unlink(uploadDir + post.file, (err)=>{
-            post.remove();
-            req.flash('success_message', 'Post was successfuly Deleted');
-            res.redirect('/admin/posts');
+
+            if(!post.comments.length < 1){
+                post.comments.forEach(comment=>{
+                    comment.remove();
+                });
+            }
+
+            post.remove().then(postRemoved=>{
+                req.flash('success_message', 'Post was successfuly Deleted');
+                res.redirect('/admin/posts');
+            });
         });
     });
 });
