@@ -44,3 +44,21 @@ $('.datepicker').pickadate();
 $('#input_starttime').pickatime({
   twelvehour: true,
 });
+
+// Switch event handler
+$(document).ready(()=>{
+  $("[name='approveComment']").on('switchChange.bootstrapSwitch', function(e, data){
+
+    const id = $(this).attr('data-id');
+
+    $.ajax({
+      type: "POST",
+      url: '/admin/comments/approve-comment',
+      data: {id: id, approveComment: data},
+      cache: false,
+      success: function(data){
+
+      }
+    });
+  });
+});

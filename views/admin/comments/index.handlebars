@@ -3,13 +3,7 @@
         background-color: #9e9e9e2e;
     }
     .breadcrumb{
-        background-color: #607d8b2e
-    }
-    .switch label input[type=checkbox]:checked+.lever {
-        background-color: rgba(76, 175, 80, 0.50);
-    }
-    .switch label input[type=checkbox]:checked+.lever:after {
-        background-color: #4CAF50;
+        background-color: #607d8b2e;
     }
 </style>
 
@@ -52,17 +46,7 @@
                     <tr>
                         <th scope="row">{{id}}</th>
                         <td>{{user.lastName}}</td>
-                        <td>
-                          
-                          <!-- Material switch -->
-                            <div class="switch">
-                                <label>
-                                    <input type="checkbox" name="approveComment">
-                                    <span class="lever"></span>
-                                </label>
-                            </div>    
-                          
-                        </td>
+                        <td><input data-id="{{id}}" type="checkbox" name="approveComment"></td>
                         <td>{{generateTime date 'Do-MM-YYYY'}}</td>
                         <td></td>
                         <td>

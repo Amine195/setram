@@ -40,4 +40,11 @@ router.delete('/:id', (req, res)=>{
     });
 });
 
+router.post('/approve-comment', (req, res)=>{
+    Comment.findByIdAndUpdate(req.body.id, {$set: {approveComment: req.body.approveComment}}, (err, result)=>{
+        if(err) return err;
+        res.send(result);
+    });
+});
+
 module.exports = router;
