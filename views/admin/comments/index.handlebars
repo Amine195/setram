@@ -5,6 +5,12 @@
     .breadcrumb{
         background-color: #607d8b2e
     }
+    .switch label input[type=checkbox]:checked+.lever {
+        background-color: rgba(76, 175, 80, 0.50);
+    }
+    .switch label input[type=checkbox]:checked+.lever:after {
+        background-color: #4CAF50;
+    }
 </style>
 
 <nav aria-label="breadcrumb">
@@ -34,6 +40,7 @@
                     <tr>
                         <th scope="col">id</th>
                         <th scope="col">owner</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Date</th>
                         <th scope="col"></th>
                         <th scope="col"></th>
@@ -45,6 +52,17 @@
                     <tr>
                         <th scope="row">{{id}}</th>
                         <td>{{user.lastName}}</td>
+                        <td>
+                          
+                          <!-- Material switch -->
+                            <div class="switch">
+                                <label>
+                                    <input type="checkbox" name="approveComment">
+                                    <span class="lever"></span>
+                                </label>
+                            </div>    
+                          
+                        </td>
                         <td>{{generateTime date 'Do-MM-YYYY'}}</td>
                         <td></td>
                         <td>
