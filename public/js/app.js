@@ -45,6 +45,25 @@ $('#input_starttime').pickatime({
   twelvehour: true,
 });
 
+// Toastr Options
+toastr.options = {
+  "closeButton": true,
+  "debug": false,
+  "newestOnTop": false,
+  "progressBar": true,
+  "positionClass": "toast-top-right",
+  "preventDuplicates": false,
+  "onclick": null,
+  "showDuration": 300,
+  "hideDuration": 1000,
+  "timeOut": 5000,
+  "extendedTimeOut": 1000,
+  "showEasing": "swing",
+  "hideEasing": "linear",
+  "showMethod": "fadeIn",
+  "hideMethod": "fadeOut"
+}
+
 // Switch event handler
 $(document).ready(()=>{
   $("[name='approveComment']").on('switchChange.bootstrapSwitch', function(e, data){
@@ -57,7 +76,7 @@ $(document).ready(()=>{
       data: {id: id, approveComment: data},
       cache: false,
       success: function(data){
-
+        toastr["success"](`Comment with id ${data._id} was updated`, "SUCCESS")
       }
     });
   });
