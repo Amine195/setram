@@ -13,8 +13,21 @@ router.all('/*', (req, res, next)=>{
 
 // Get Index Users
 router.get('/', (req, res)=>{
-    User.find({}).then(users=>{
-        res.render('admin/users/index', {users:users});
+
+    const perPage = 3;
+    const page = req.query.page || 1;
+
+    User.find({})
+        .skip((perPage * page) - perPage)
+        .limit(perPage)
+        .then(users=>{
+        User.count().then(userCount=>{
+            res.render('admin/users/index', {
+                users:users,
+                current:parseInt(page),
+                pages: Math.ceil(userCount / perPage)
+            });
+        });
     });
 });
 
