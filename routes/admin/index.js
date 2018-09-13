@@ -15,15 +15,28 @@ router.get('/', (req, res)=>{
 });
 
 router.get('/dashboard', (req, res)=>{
-    Post.count().then(postCount=>{
-        Comment.count().then(commentCount=>{
-            Pasf.count().then(pasfCount=>{
-                Constat.count().then(constatCount=>{
-                    res.render('admin/dashboard', {postCount: postCount, commentCount: commentCount, pasfCount: pasfCount, constatCount: constatCount});
-                });
-            });
-        });
+
+    const promises = [
+        Post.count().exec(),
+        Comment.count().exec(),
+        Pasf.count().exec(),
+        Constat.count().exec()
+    ];
+
+    Promise.all(promises).then(([postCount, commentCount, pasfCount, constatCount])=>{
+        res.render('admin/dashboard', {postCount: postCount, commentCount: commentCount, pasfCount: pasfCount, constatCount: constatCount});
     });
+
+
+    // Post.count().then(postCount=>{
+    //     Comment.count().then(commentCount=>{
+    //         Pasf.count().then(pasfCount=>{
+    //             Constat.count().then(constatCount=>{
+    //                 res.render('admin/dashboard', {postCount: postCount, commentCount: commentCount, pasfCount: pasfCount, constatCount: constatCount});
+    //             });
+    //         });
+    //     });
+    // });
 });
 
 module.exports = router;
