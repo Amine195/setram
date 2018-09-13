@@ -27,8 +27,8 @@ router.get('/', (req, res)=>{
 });
 
 // View One Post
-router.get('/view/:id', (req, res)=>{
-    Post.findOne({_id: req.params.id}).then(post=>{
+router.get('/view/:slug', (req, res)=>{
+    Post.findOne({slug: req.params.slug}).then(post=>{
         res.render('admin/posts/view', {post:post}); 
     });
 });
